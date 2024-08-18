@@ -24,10 +24,16 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 import android.util.Log
 import org.json.JSONObject
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 1
     private lateinit var binding: ActivityMainBinding
+
+    companion object {
+        const val BASE_URL = "https://dd1a-168-181-208-155.ngrok-free.app"
+        const val DEV = true;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,7 +97,10 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun uploadImage(bitmap: Bitmap){
-        val client = OkHttpClient()
+        val client = OkHttpClient().newBuilder().connectTimeout(10, TimeUnit.SECONDS)  // Connection timeout
+            .readTimeout(30, TimeUnit.SECONDS)     // Read timeout
+            .writeTimeout(30, TimeUnit.SECONDS)    // Write timeout
+            .build()
 
         val byteArray = bitmapToByteArray(bitmap)
         val requestBody = MultipartBody.Builder()
@@ -100,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val request = Request.Builder()
-            .url("https://2e36-168-181-208-155.ngrok-free.app/uploadFromCamera?dev=true")
+            .url("$BASE_URL/uploadFromCamera?dev=$DEV")
             .header("ngrok-skip-browser-warning","asd")
             .header("User-Agent","asd")
             .post(requestBody)
@@ -114,17 +123,23 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
                     val jsonData = response.body?.string();
-                    var extractedValue = ""
+                    var deseasePlant = false
+                    var deseaseName = ""
+                    var deseaseDescription = ""
+                    var deseaseCientificName = ""
+
                     if(jsonData != null){
                         var jsonResponse = JSONObject(jsonData)
-                        val choicesArray = jsonResponse.getJSONArray("choices")
+                        val choicesArray = jsonResponse.getJSONArray("posibleEnfermedad")
                         val firstChoice = choicesArray.getJSONObject(0)
-                        val messageObject = firstChoice.getJSONObject("message")
-                        extractedValue = messageObject.getString("content")
+                        deseaseName = firstChoice.getString("enfermedad")
+                        deseaseDescription = firstChoice.getString("descripcion")
+                        deseaseCientificName = firstChoice.getString("nombreCientifico")
                         //extractedValue = jsonResponse.getString("choices")
                     }
                     runOnUiThread{
-                        binding.body.setText(extractedValue)
+                        val texto= "$deseaseName $deseaseDescription $deseaseCientificName";
+                        binding.body.text = texto
                     }
 
                     println("Upload successful")
