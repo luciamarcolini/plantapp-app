@@ -5,7 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_radius">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -19,6 +20,7 @@
         android:layout_centerHorizontal="true"
         android:text="Name"
         android:layout_below="@+id/imageView"
+        android:layout_marginVertical="10dp"
         android:id="@+id/imageName"/>
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -8,4 +8,9 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="SplashTheme" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@drawable/logo_app</item>
+    </style>
+
 </resources>

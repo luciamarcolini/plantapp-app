@@ -7,91 +7,194 @@
     android:layout_height="match_parent"
     tools:context=".ui.info.InfoFragment">
 
+ <ImageView
+     android:id="@+id/imageView"
+     android:layout_width="match_parent"
+     android:layout_height="400dp"
+     android:layout_margin="0dp"
+     android:contentDescription="@string/image_description"
+     android:scaleType="fitCenter"
+     android:adjustViewBounds="true"
+     android:src="@drawable/sample_image"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"/>
    <!-- <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.info.InfoFragment">-->
 
         <!-- ImageView at the top -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="305dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/image_description"
-        android:src="@drawable/sample_image" />
 
+ <ScrollView
+     android:id="@+id/scrollView"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@id/imageView"
+     android:layout_above="@id/bottom_navigation">
+
+ <!-- Inside ScrollView, add a container for the TextViews -->
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:paddingHorizontal="20dp">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Diagnóstico"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/titulo2"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_below="@+id/titulo"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="32dp"
+        android:drawableStart="@drawable/ic_plant"
+        android:drawablePadding="6dp"
+        android:fontFamily="@font/mulish"
+        android:gravity="center_vertical"
+        android:text="SOBRE LA PLANTA"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="34dp"
-        android:layout_below="@id/imageView"
-        android:layout_marginTop="48dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/titulo2"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/mulish"
         android:text="TextView 2"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="77dp"
-        android:layout_below="@id/textView2"
-        android:layout_marginTop="87dp"
-        android:text="TextView 1"
-        android:textColor="#F44336"
-        android:textSize="16sp" />
-
-    <TextView
-     android:id="@+id/textView3"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:layout_below="@id/textView2"
-     android:layout_marginTop="188dp"
-     android:text="TextView 3"
-     android:textColor="#000000"
-     android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView3"
-        android:layout_marginTop="24dp"
-        android:text="TextView 4"
-        android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <TextView
         android:id="@+id/textView5"
-        android:layout_width="399dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView1"
-        android:layout_marginTop="-135dp"
+        android:fontFamily="@font/mulish"
+        android:layout_below="@+id/textView2"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="2dp"
         android:text="TextView 5"
         android:textColor="#000000"
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/titulo3"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_below="@+id/textView5"
+        android:fontFamily="@font/mulish"
+        android:layout_marginTop="5dp"
+        android:layout_marginVertical="15dp"
+        android:text="ENFERMEDAD DETECTADA"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/ic_warning"
+        android:drawablePadding="6dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!--<TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="40dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView 1"
+        android:textColor="#F44336"
+        android:textSize="16sp" />-->
+
+    <TextView
+     android:id="@+id/textView3"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_below="@+id/titulo3"
+     android:fontFamily="@font/mulish"
+     android:layout_marginVertical="8dp"
+     android:layout_marginHorizontal="10dp"
+     android:text="TextView 3"
+     android:textColor="#000000"
+     android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/titulo4"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="5dp"
+        android:layout_marginVertical="15dp"
+        android:text="TRATAMIENTO SUGERIDO"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/mulish"
+        android:drawableStart="@drawable/ic_laboratory"
+        android:drawablePadding="6dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@+id/titulo4"
+        android:fontFamily="@font/mulish"
+        android:layout_marginVertical="8dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView 4"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+
+
+    <TextView
         android:id="@+id/textView6"
-        android:layout_width="399dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView4"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/mulish"
         android:text="TextView 6"
         android:textColor="#000000"
         android:textSize="16sp" />
 
- <TextView
-     android:id="@+id/textView7"
-     android:layout_width="399dp"
-     android:layout_height="wrap_content"
-     android:layout_below="@id/textView6"
-     android:layout_marginTop="34dp"
-     android:text="TextView 7"
-     android:textColor="#000000"
-     android:textSize="16sp" />
+     <TextView
+         android:id="@+id/textView7"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@id/textView6"
+         android:layout_marginHorizontal="10dp"
+         android:layout_marginTop="10dp"
+         android:fontFamily="@font/mulish"
+         android:tag="tag"
+         android:text="TextView 7"
+         android:textColor="#000000"
+         android:textSize="16sp"
+         android:textStyle="bold"
+         android:layout_marginBottom="20dp"/>
+ </LinearLayout>
+ </ScrollView>
 
  <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
