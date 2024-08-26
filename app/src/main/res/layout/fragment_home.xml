@@ -13,63 +13,103 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <!-- ImageView for the first icon -->
     <ImageView
-        android:id="@+id/sampleImageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_margin="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/sampleImageView1"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/paso_1"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_gravity="center"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- TextView for the first instruction -->
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/instructionText1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mulish"
+        android:text="1. Tomá foto de las partes enfermas de la planta con tu cámara."
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        android:paddingLeft="30pt"
+        android:paddingRight="30pt"
+        app:layout_constraintTop_toBottomOf="@id/sampleImageView1" />
 
-    <TextView
-        android:id="@+id/texto1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- ImageView for the second icon -->
+    <ImageView
+        android:id="@+id/sampleImageView2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/paso_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintTop_toBottomOf="@id/instructionText1" />
+
+    <!-- TextView for the second instruction -->
+    <TextView
+        android:id="@+id/instructionText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/mulish"
+        android:paddingLeft="30pt"
+        android:paddingRight="30pt"
+        android:text="2. Asegúrate que la iluminación sea apropiada"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sampleImageView2" />
+
+    <!-- ImageView for the third icon -->
+    <ImageView
+        android:id="@+id/sampleImageView3"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/paso_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instructionText2" />
+
+    <!-- TextView for the third instruction -->
+    <TextView
+        android:id="@+id/instructionText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mulish"
+        android:paddingLeft="30pt"
+        android:paddingRight="30pt"
+        android:text="3. La parte afectada de la planta debe estar en foco"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/sampleImageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_camera"
-        android:layout_width="196dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="684dp"
-        android:icon="@android:drawable/ic_menu_search"
-        android:text="@string/scan"
-        android:textColorLink="#188E83"
-        android:textSize="20sp"
-        app:cornerRadius="8dp"
-        app:iconGravity="textStart"
-        app:layout_constraintEnd_toEndOf="@id/text_home"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="116dp"
+        android:backgroundTint="#02c6be"
+        android:fontFamily="@font/mulish"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="15dp"
+        android:text="Iniciar diagnóstico"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
         android:id="@+id/progress_bar"

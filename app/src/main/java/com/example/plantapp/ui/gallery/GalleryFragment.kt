@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.GridView
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,7 @@ class GalleryFragment : Fragment() {
     private var _binding: FragmentGalleryBinding? = null
     private val binding get() = _binding!!
     private lateinit var gridView : GridView
+    private lateinit var progressBar2 : ProgressBar
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ImageGridAdapter
@@ -52,7 +54,7 @@ class GalleryFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_gallery, container, false)
-
+        progressBar2 = view.findViewById(R.id.progress_bar)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(context, 2) // 2 columns in the grid
         adapter = ImageGridAdapter(images)
@@ -65,6 +67,7 @@ class GalleryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fragment = GalleryFragment()
 
+        progressBar2.setVisibility(View.VISIBLE);
         val client =
             OkHttpClient().newBuilder().connectTimeout(10, TimeUnit.SECONDS)  // Connection timeout
                 .readTimeout(30, TimeUnit.SECONDS)     // Read timeout
@@ -107,6 +110,7 @@ class GalleryFragment : Fragment() {
                         val images = immutableImages
 
                         requireActivity().runOnUiThread {
+                            progressBar2.setVisibility(View.GONE);
                             adapter = ImageGridAdapter(images)
                             recyclerView.adapter = adapter
                         }

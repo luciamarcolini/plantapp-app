@@ -58,26 +58,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        val textView2: TextView = binding.texto1
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        homeViewModel.texto1.observe(viewLifecycleOwner) {
-            textView2.text = it
-        }
+
         progressBar = binding.progressBar
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Find the ImageView
-        val imageView: ImageView = binding.sampleImageView
-
-        // Set an image to the ImageView
-        imageView.setImageResource(R.drawable.planta2) // Use your image resource here
 
         binding.btnCamera.setOnClickListener {
             dispatchTakePictureIntent()
@@ -161,12 +148,14 @@ class HomeFragment : Fragment() {
                     var deseaseDescription = ""
                     var deseaseScientificName = ""
                     var solution = ""
+                    var plantCientificName = ""
 
                     if (jsonData != null) {
                         var jsonResponse = JSONObject(jsonData)
                         val listDeseases = jsonResponse.getJSONArray("deseases")
                         deseasePlant = jsonResponse.getBoolean("isDesease")
                         plantDescription = jsonResponse.getString("description")
+                        plantCientificName =  jsonResponse.getString("scientific_name")
 
                          val firstChoice = listDeseases.getJSONObject(0)
                           deseaseName = firstChoice.getString("deseaseName")
@@ -185,6 +174,7 @@ class HomeFragment : Fragment() {
                             putString("solution", solution)
                             putString("fertilizer", fertilizer)
                             putParcelable("image", bitmap)
+                            putString("scientific_name",plantCientificName)
                         }
 
                     val navOptions = NavOptions.Builder()

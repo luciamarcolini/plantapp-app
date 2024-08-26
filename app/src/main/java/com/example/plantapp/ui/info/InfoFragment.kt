@@ -39,12 +39,12 @@ class InfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val deseasePlant = arguments?.getBoolean("deseasePlant")
-        textView1 = binding.textView1
+        /*textView1 = binding.textView1
          if (deseasePlant == true) {
              textView1.text = "La planta está enferma!"
          } else {
              textView1.text = "La planta está sana!"
-         }
+         }*/
 
         val scientific_name = arguments?.getString("scientific_name")
         textView2 = binding.textView2
