@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="imageViewInfo" type="id" />
+    <item name="body" type="id" />
+    <item name="progress_bar" type="id" />
+</resources>

@@ -51,7 +51,15 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.constraintlayout.v113)
+    implementation(libs.material.v1120)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.camera.view)
+    implementation(libs.camera.lifecycle)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation (libs.androidx.camera.core.v130)
+    implementation (libs.androidx.camera.camera2)
+    implementation (libs.glide)
+
 }
