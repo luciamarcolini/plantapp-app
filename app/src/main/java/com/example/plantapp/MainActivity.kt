@@ -2,7 +2,9 @@ package com.example.plantapp
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.Image
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,10 @@ import okhttp3.Response
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.NavHostFragment
+import com.example.plantapp.ui.gallery.GalleryFragment
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
@@ -38,29 +44,77 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        /*seteo layout*/
+        setContentView(R.layout.activity_main)
 
-        binding.btnCamera.setOnClickListener {
-            dispatchTakePictureIntent()
+        /*inicializar botton navigation*/
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        bottomNavigationView.setupWithNavController(navController)
+        // Set scan screen selected
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
 
-            val navView: BottomNavigationView = binding.navView
+
+
+      /*  supportFragmentManager.beginTransaction()
+            .replace(R.id.galle, fragment)
+            .commit()*/
+        /*bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_scan -> {
+                    dispatchTakePictureIntent()
+                    true
+                }
+                else -> {
+                    // Handle other menu items
+                    val navController2 = findNavController(R.id.nav_host_fragment)
+                    navController2.navigate(item.itemId)
+                    true
+                }
+            }
+        }*/
+
+
+       
+        
+        // binding = ActivityMainBinding.inflate(layoutInflater)
+       // setContentView(binding.root)
+
+        //binding.btnCamera.setOnClickListener {
+           // dispatchTakePictureIntent()
+
+           // val navView: BottomNavigationView = binding.navView
             Log.w("myApp", "Entra");
-            val navController = findNavController(R.id.nav_host_fragment_activity_main)
+         //   val navController = findNavController(R.id.nav_host_fragment)
+           // val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
-            val appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-                )
-            )
+          //  val appBarConfiguration = AppBarConfiguration(
+            //    setOf(
+              //      R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+               // )
+           // )
 
             //setupActionBarWithNavController(navController, appBarConfiguration)
 
-            navView.setupWithNavController(navController)
-        }
+    //    bottomNavigationView.setupWithNavController(navController)
+       // }
 
     }
+
+ /*   private fun openCamera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
+        } else {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+        }
+    }*/
+
+
+    
 
     private fun dispatchTakePictureIntent() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -78,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
 
-            binding.imgViewer.setImageBitmap(imageBitmap)
+           // binding.imgViewer.setImageBitmap(imageBitmap)
             val result = uploadImage(imageBitmap)
 
 
@@ -87,12 +141,13 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun bitmapToByteArray(bitmap: Bitmap): ByteArray {
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
         return stream.toByteArray()
     }
+
+
 
 
 
@@ -139,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     runOnUiThread{
                         val texto= "$deseaseName $deseaseDescription $deseaseCientificName";
-                        binding.body.text = texto
+                        //binding.body.text = texto
                     }
 
                     println("Upload successful")
